@@ -26,10 +26,10 @@ function onFormSubmit(event) {
     }
     createPromise(counter, FIRSTDELAY)
       .then((position, delay) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(`✅ Fulfilled promise ${position} in ${DELAYSTEP}ms`);
       })
       .catch((position, delay) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notify.failure(`❌ Rejected promise ${position} in ${DELAYSTEP}ms`);
       });
     counter += 1;
   }, DELAYSTEP);
