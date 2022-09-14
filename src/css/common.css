@@ -22,19 +22,16 @@ img {
 }
 .field {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   border: #e0d9d9 solid 1px;
   border-radius: 3px;
   margin-top: 5px;
   margin-right: 5px;
   align-items: center;
   width: 45px;
-
-
 }
 .value {
   font-size: 32px;
-  
 }
 .label {
   font-size: 10px;
