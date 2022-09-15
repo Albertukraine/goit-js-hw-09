@@ -18,7 +18,7 @@ function onFormSubmit(event) {
   let DELAYSTEP = Number(refs.stepField.value);
   let AMOUNT = Number(refs.amountField.value);
 
-  let counter = 0;
+  let counter = 1;
 
   let intervalID = setInterval(() => {
     if (counter === AMOUNT) {
