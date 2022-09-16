@@ -24,14 +24,20 @@ function onFormSubmit(event) {
     if (counter === AMOUNT) {
       clearInterval(intervalID);
     }
+    
+
+    
     createPromise(counter, FIRSTDELAY)
       .then((position, delay) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${DELAYSTEP}ms`);
+        Notify.success(`✅ Fulfilled promise ${position} in ${intervalCounter}ms`);
       })
       .catch((position, delay) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${DELAYSTEP}ms`);
+        Notify.failure(`❌ Rejected promise ${position} in ${intervalCounter}ms`);
       });
     counter += 1;
+    let intervalCounter = (FIRSTDELAY + DELAYSTEP * counter) - 2 * DELAYSTEP;
+    console.log(intervalCounter);
+
   }, DELAYSTEP);
 
   function createPromise(position, delay) {
