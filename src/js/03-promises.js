@@ -12,52 +12,45 @@ refs.form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  // getFormData();
 
-  let FIRSTDELAY = Number(refs.delayField.value);
-  let DELAYSTEP = Number(refs.stepField.value);
-  let AMOUNT = Number(refs.amountField.value);
 
-  let counter = 1;
+  let amount = +refs.amountField.value;
+  let delay = +refs.delayField.value;
+  let delaystep = +refs.stepField.value;
 
-  let intervalID = setInterval(() => {
-    if (counter === AMOUNT) {
-      clearInterval(intervalID);
-    }
-    
+  
+for (let position = 1; position <= amount; position += 1) {
 
-    
-    createPromise(counter, FIRSTDELAY)
-      .then((position, delay) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${intervalCounter}ms`);
-      })
-      .catch((position, delay) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${intervalCounter}ms`);
-      });
-    counter += 1;
-    let intervalCounter = (FIRSTDELAY + DELAYSTEP * counter) - 2 * DELAYSTEP;
-    console.log(intervalCounter);
-
-  }, DELAYSTEP);
-
+  createPromise(position, delay)
+    .then(result => 
+      Notify.success(result)
+    )
+    .catch(error => {
+      Notify.failure(error)
+      
+    });
+    delay += delaystep;
+    // console.log(delay);
+}
+ 
   function createPromise(position, delay) {
     return new Promise(function (resolve, reject) {
       const shouldResolve = Math.random() > 0.3;
-      if (shouldResolve) {
-        setTimeout(() => {
-          resolve(position, delay);
-        }, delay);
-      } else {
-        setTimeout(() => {
-          reject(position, delay);
-        }, delay);
-      }
+      setTimeout(() => {
+        if (shouldResolve) {
+            resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        } else {
+            reject(`❌ Rejected promise ${position} in ${delay}ms`);
+        }
+        
+      }, delay);
     });
   }
 }
 
-// ---------------------
 
-// let AMOUNT = 3;
-// let FIRSTDELAY = 1000;
-// let DELAYSTEP = 200;
+
+
+   
+
+  
